@@ -1,0 +1,25 @@
+version: '3'
+services:
+    mosquitto:
+        image: "4nxio/mosquitto:1.5.6-r0"
+        restart: always
+        volumes:
+            - "/etc/localtime:/etc/localtime:ro"
+            - "/etc/timezone:/etc/timezone:ro"
+            - "mosquitto-config:/opt/mosquitto/config"
+            - "mosquitto-data:/opt/mosquitto/data"
+            - "mosquitto-log:/opt/mosquitto/log"
+        ports:
+            - "1883:1883"
+        tty: true
+        environment:
+            USER_ID: "1001"
+            GROUP_ID: "1001"
+            
+volumes:
+    mosquitto-config:
+        external: true
+    mosquitto-data:
+        external: true
+    mosquitto-log:
+        external: true
