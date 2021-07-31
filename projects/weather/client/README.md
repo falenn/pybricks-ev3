@@ -5,7 +5,7 @@ curl --request GET \
   --header 'content-type: application/json'
   --header 'apikey: API_KEY'
 
-  jBjFa4Bh506aaPfnHwkL39c0O4OeAmlw
+ 
 
 
   
