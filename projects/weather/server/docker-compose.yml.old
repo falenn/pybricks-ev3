@@ -1,14 +1,14 @@
 version: '3'
 services:
     mosquitto:
-        image: "eclipse-mosquitto:latest"
+        image: "4nxio/mosquitto:1.5.6"
         restart: always
         volumes:
             - "/etc/localtime:/etc/localtime:ro"
             - "/etc/timezone:/etc/timezone:ro"
-            - "mosquitto-config:/mosquitto/config"
-            - "mosquitto-data:/mosquitto/data"
-            - "mosquitto-log:/mosquitto/log"
+            - "mosquitto-config:/opt/mosquitto/config"
+            - "mosquitto-data:/opt/mosquitto/data"
+            - "mosquitto-log:/opt/mosquitto/log"
         ports:
             - "1883:1883"
         tty: true

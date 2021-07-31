@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 '''
 Comment about this function
 This can be a long, multi-line comment
