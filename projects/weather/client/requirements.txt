@@ -1,4 +1,3 @@
 requests
 tomorrow_io
-time
 paho-mqtt
