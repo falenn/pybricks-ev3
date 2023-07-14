@@ -143,7 +143,7 @@ if __name__ == "__main__":
     
     #Connect to broker
     client = mqtt.Client("rbdge-robotics-weather")
-    client.connect(host="172.16.0.41")
+    client.connect(host="192.168.1.168")
     #client.username_pw_set(username="robots",password="robots")
 
     print(f"clientId:{client._client_id}")
