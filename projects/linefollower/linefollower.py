@@ -64,6 +64,7 @@ if __name__ == "__main__":
         #    robot.drive(DRIVE_SPEED, -20)
         #wait(10)
 
+        # The deviation will be positive or negative, giving the direction to turn 
         deviation = line_sensor.reflection() - threshold
         # Calculate the turn rate.
         turn_rate = PROPORTIONAL_GAIN * deviation
