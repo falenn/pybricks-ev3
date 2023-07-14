@@ -25,14 +25,14 @@ robot = DriveBase(left_motor, right_motor, \
 # Calculate the light threshold. Choose values based on your measurements.
 BLACK = 9
 WHITE = 85
-threshold = (BLACK + WHITE) / 2
 
 # anything less than threshold is the line
-threshold = 20
+threshold = (BLACK + WHITE) / 2
+
 
 # Set the drive speed at 100 millimeters per second.
 DRIVE_SPEED = 100
-PROPORTIONAL_GAIN = 1.2
+PROPORTIONAL_GAIN = .7
 
 def check_cancel():
     ''' if brick button pressed, return True'''
@@ -43,7 +43,7 @@ def check_cancel():
     else:
         return False
 
-def say_something(phrase=""):
+def say_something(phrase="Lets Go"):
     global ev3
     ev3.speaker.set_volume(100)
     ev3.speaker.set_speech_options(voice=f1)
