@@ -1,10 +1,21 @@
 #!/usr/bin/env pybricks-micropython
+"""
+#!/usr/bin/env pybricks-micropython - this is the way we specifiy the binary executable for this file
+pybricks-micropython executes on the robot.
+"""
+
+"""
+The following are the library imports for this program
+"""
 from time import sleep
 from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import Motor
 from pybricks.parameters import Port, Stop
 
 
+"""
+Here we init the program with global variables defining the robot
+"""
 # Create objects here
 ev3 = EV3Brick()
 right_motor = Motor(Port.B)
