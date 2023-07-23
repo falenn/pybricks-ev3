@@ -7,10 +7,11 @@ from pybricks.parameters import Port, Stop, Color
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait
 
+""" Initialize the robot drive base"""
 ev3 = EV3Brick()
 
-left_motor = Motor(Port.C)
-right_motor = Motor(Port.B)
+left_motor = Motor(Port.B)
+right_motor = Motor(Port.C)
 touch = TouchSensor(Port.S1)
 color = ColorSensor(Port.S3)
 
@@ -30,15 +31,21 @@ def check_cancel() -> bool:
     else:
         return False
 
-def back_up_to_right(distance:int=20, speed:int=100, angle:int=20):
+def back_up_and_turn(speed:int=100,turn:int=20,distance:int=50):
+    """ 
+    Back up the bot to the right when bot sees the black line
+    Uses the global vars to access the robot
+    """
     global robot
     global ev3
     print("backup!")
+    'reset counter so that it starts at 0 and starts counting negative as the bot backs up'
     robot.reset()
     while robot.distance() > -distance:
-        robot.drive(-speed, -angle)
+        robot.drive(-speed, -turn)
         print("Backup dist: %f" % (robot.distance()))
         ev3.speaker.beep()
+        'pause 100 millisenconds before next check'
         wait(100)
     robot.stop()
     robot.reset()
@@ -59,17 +66,20 @@ def is_line() -> bool:
 def main():
     ''' 
     While not cancelled by pressing button on brick,
-    if on black line, backup to right
+    if on black line, backup to left
     else, 
     if bumped, drive forward fast, 
     else drive forward
-    '''
+    """
     while not check_cancel():
         if is_line():
-            back_up_to_right(20)
+            'backup steering to the right'
+            back_up_and_turn(20)
         elif touch.pressed():
+            'drive forward fast!'
             drive_forward(1000)
         else:
+            'drive forward normal'
             drive_forward(100)
 
 if __name__ == "__main__":

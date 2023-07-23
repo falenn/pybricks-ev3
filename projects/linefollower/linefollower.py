@@ -1,3 +1,6 @@
+#!/usr/bin/env pybricks-micropython
+
+"""Imports"""
 from pybricks.ev3devices import Motor, ColorSensor
 from pybricks.parameters import Port, Color
 from pybricks.tools import wait
@@ -12,8 +15,8 @@ ev3 = EV3Brick()
 # Initialize the color sensor.
 line_sensor = ColorSensor(Port.S3)
 
-wheel_diam=38.1
-axle_track=114.3
+wheel_diam=38.1 # cm
+axle_track=114.3 # cm
 
 # Initialize the drive base.
 robot = DriveBase(left_motor, right_motor, \
@@ -22,14 +25,14 @@ robot = DriveBase(left_motor, right_motor, \
 # Calculate the light threshold. Choose values based on your measurements.
 BLACK = 9
 WHITE = 85
-threshold = (BLACK + WHITE) / 2
 
 # anything less than threshold is the line
-threshold = 20
+threshold = (BLACK + WHITE) / 2
+
 
 # Set the drive speed at 100 millimeters per second.
 DRIVE_SPEED = 100
-PROPORTIONAL_GAIN = 1.2
+PROPORTIONAL_GAIN = .7
 
 def check_cancel():
     ''' if brick button pressed, return True'''
@@ -40,7 +43,7 @@ def check_cancel():
     else:
         return False
 
-def say_something(phrase=""):
+def say_something(phrase="Lets Go"):
     global ev3
     ev3.speaker.set_volume(100)
     ev3.speaker.set_speech_options(voice=f1)
@@ -61,6 +64,7 @@ if __name__ == "__main__":
         #    robot.drive(DRIVE_SPEED, -20)
         #wait(10)
 
+        # The deviation will be positive or negative, giving the direction to turn 
         deviation = line_sensor.reflection() - threshold
         # Calculate the turn rate.
         turn_rate = PROPORTIONAL_GAIN * deviation
