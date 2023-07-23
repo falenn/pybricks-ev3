@@ -64,7 +64,7 @@ def is_line() -> bool:
 
 
 def main():
-    ''' 
+    """
     While not cancelled by pressing button on brick,
     if on black line, backup to left
     else, 
@@ -81,6 +81,6 @@ def main():
         else:
             'drive forward normal'
             drive_forward(100)
-
+            
 if __name__ == "__main__":
     main()
