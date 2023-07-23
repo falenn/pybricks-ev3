@@ -15,11 +15,13 @@ touch = TouchSensor(Port.S1)
 color = ColorSensor(Port.S3)
 
 wheel_diam=38.1 # in mm
+
+'Distance between wheels'
 axle_track=114.3 # in mm
 
 robot = DriveBase(left_motor, right_motor, wheel_diam, axle_track)
 
-def check_cancel():
+def check_cancel() -> bool:
     ''' if brick button pressed, return True'''
     global ev3
     button_list = ev3.buttons.pressed()
@@ -28,24 +30,24 @@ def check_cancel():
     else:
         return False
 
-def back_up_to_right(speed=100):
+def back_up_to_right(distance:int=20, speed:int=100, angle:int=20):
     global robot
     global ev3
     print("backup!")
     robot.reset()
-    while robot.distance() > -50:
-        robot.drive(-speed, -20)
+    while robot.distance() > -distance:
+        robot.drive(-speed, -angle)
         print("Backup dist: %f" % (robot.distance()))
         ev3.speaker.beep()
         wait(100)
     robot.stop()
     robot.reset()
 
-def drive_forward(speed=100):
+def drive_forward(speed:int=100):
     global robot
     robot.drive(speed, 0)
 
-def is_line():
+def is_line() -> bool:
     '''if line, return True, else False'''
     global color
     if color.color() == Color.BLACK:
@@ -54,7 +56,7 @@ def is_line():
         return False
 
 
-if __name__ == "__main__":
+def main():
     ''' 
     While not cancelled by pressing button on brick,
     if on black line, backup to right
@@ -69,4 +71,6 @@ if __name__ == "__main__":
             drive_forward(1000)
         else:
             drive_forward(100)
-        wait(100)
+
+if __name__ == "__main__":
+    main()
